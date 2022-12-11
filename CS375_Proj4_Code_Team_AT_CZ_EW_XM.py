@@ -64,7 +64,7 @@ def findSuggestions(word, D):
         editDistance = editDistance_iter(d, word)
         k = 5 #index where new word should be inserted
         while k > 0 or editDistance < editDistances[k-1]:
-            k -= 1 #d belongs higher in the list
+                k -= 1 #d belongs higher in the list
         #Inserting d and edit distance into their lists
         out.insert(k, d)
         editDistance.insert(k, editDistance)

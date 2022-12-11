@@ -29,11 +29,41 @@ def editDistance_rec(S,T):
                     editDistance_rec(S,T[:-1]) ) 
 
 
+
 def editDistance_iter(S,T):
     '''
     TODO add docstring with I/O
     '''
-    pass
+    m = len(S)
+    n = len(T)
+
+    grid = []
+    for i in range(m + 1): # rows: S, using m
+        grid.append([])
+        for j in range(n + 1): # columns: T, using n
+            grid[i].append(0)  
+
+    for i in range(1,m + 1): # base case for rows
+        grid[i][0] = i  
+    
+    for j in range(1,n + 1): # base case for columns
+        grid[0][j] = j
+
+    for i in range(1, m + 1): # all but the first row / first column
+        for j in range(1, n + 1): 
+            if S[i - 1] == T[j - 1]: # if specified letters in S and T are the same
+                grid[i][j] = grid[i - 1][j - 1] 
+            else: # if specified letters in S and T are not the same
+                grid[i][j] = 1 + min( 
+                                grid[i - 1][j - 1],
+                                grid[i - 1][j],
+                                grid[i][j - 1]
+                            ) 
+
+    for i in range(m + 1): # printing out grid
+        print(grid[i])  
+    
+    return grid[m][n]
 
 
 def spellCheck(T, D):

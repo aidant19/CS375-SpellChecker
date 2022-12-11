@@ -23,10 +23,10 @@ def editDistance_rec(S,T):
     if T == '':
         return len(S)
     if S[-1] == T[-1]:
-        return editDistance_rec(S[:-2],T[:-2]) 
-    return 1 + min( editDistance_rec(S[:-2],T[:-2]), 
-                    editDistance_rec(S[:-2],T[:-1]),
-                    editDistance_rec(S[:-1],T[:-2]) ) 
+        return editDistance_rec(S[:-1],T[:-1]) 
+    return 1 + min( editDistance_rec(S[:-1],T[:-1]), 
+                    editDistance_rec(S[:-1],T),
+                    editDistance_rec(S,T[:-1]) ) 
 
 
 def editDistance_iter(S,T):
@@ -78,5 +78,6 @@ def findSuggestions(word, D):
 
 
 if __name__ == "__main__":
-    print(editDistance_rec("analysis", "algotithms"))
+    print(editDistance_rec("analysis", "algorithm"))
+
 

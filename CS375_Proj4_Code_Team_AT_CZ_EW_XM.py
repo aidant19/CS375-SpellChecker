@@ -60,8 +60,8 @@ def editDistance_iter(S,T):
                                 grid[i][j - 1]
                             ) 
 
-    for i in range(m + 1): # printing out grid
-        print(grid[i])  
+    # for i in range(m + 1): # printing out grid
+    #     print(grid[i])  
     
     return grid[m][n]
 
@@ -93,14 +93,17 @@ def findSuggestions(word, D):
     for d in D:
         editDistance = editDistance_iter(d, word)
         k = 5 #index where new word should be inserted
-        while k > 0 or editDistance < editDistances[k-1]:
+        while k > 0: 
+            if editDistance < editDistances[k-1]:
                 k -= 1 #d belongs higher in the list
+            else:
+                break
         #Inserting d and edit distance into their lists
         out.insert(k, d)
-        editDistance.insert(k, editDistance)
+        editDistances.insert(k, editDistance)
         #Trimming list to sill be 5 long
         out = out[:5]
-        editDistances = editDistance[:5]
+        editDistances = editDistances[:5]
     return out
 
 
@@ -108,6 +111,6 @@ def findSuggestions(word, D):
 
 
 if __name__ == "__main__":
-    print(editDistance_rec("analysis", "algorithm"))
+    print(spellCheck("ths is a tst of spel check", ["this", "is", "a", "test", "of", "spell", "check"]))
 
 

@@ -28,13 +28,13 @@ def editDistance_rec(S,T):
 
     Complexity:
     '''
-    if S == '':
+    if S == '': # if S is an empty string
         return len(T) 
-    if T == '':
+    if T == '': # if T is an empty string
         return len(S)
-    if S[-1] == T[-1]:
+    if S[-1] == T[-1]: # if the last letter in S and T is the same
         return editDistance_rec(S[:-1],T[:-1]) 
-    return 1 + min( editDistance_rec(S[:-1],T[:-1]), 
+    return 1 + min( editDistance_rec(S[:-1],T[:-1]), # if the last letter in S and T is not the same
                     editDistance_rec(S[:-1],T),
                     editDistance_rec(S,T[:-1]) ) 
 
@@ -172,7 +172,7 @@ def main():
     See usage statement above for all the possible arguments
     '''
     if len(sys.argv) < 2:
-        print("Please provide comand line arguments")
+        print("Please provide command line arguments")
         return
     
     if sys.argv[1] == "spellCheck_test":
@@ -180,7 +180,7 @@ def main():
         return
 
     
-    print("Could not identify comand line arguments")
+    print("Could not identify command line arguments")
 
 
 

@@ -158,6 +158,7 @@ def spellCheck_test():
             SCOWL[i] = SCOWL[i].strip()
     print("Input: 'this is a tst of teh spell chekr with SCOWL', SCOWL dictionary")
     print(spellCheck('this is a tst of teh spell chekr with SCOWL', SCOWL))
+    print("Note for 'teh', 'the' was not suggested. With short words, the edit distance to other short words is very small, thus the correct word may not make it on the suggestions ")
     print("---------")
     print("Test 4: Adding Punctuation and Capitals")
     print("Our spell checker is case sensitive and does not strip punctuation")

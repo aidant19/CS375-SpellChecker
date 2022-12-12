@@ -14,7 +14,12 @@ def get_text(file):
     text = ""
     for page in fileReader.pages:
         text += "\n" + page.extract_text()
-    text = re.sub(r'[^a-zA-Z ]', '', text)
+    text = text.replace("\n", " ")
+    text = text.replace("—", " ")
+    text = text.replace(".", " ")
+    text = text.replace("’", "'")
+    text = re.sub(r'[^a-zA-Z\'\- ]', '', text)
+    text = text.lower()
     return text
 
 def get_files(dir):

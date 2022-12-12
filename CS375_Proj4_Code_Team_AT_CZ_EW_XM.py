@@ -95,13 +95,32 @@ def spellCheck(T, D):
     Complexity:
     '''
     out = {} #Output dictionary
-    D = set(D)
     words = T.split() #split by whitespace, strips any remaining white space
     for word in words:
         if word not in D: #linear search, O(m)
             out[word] = findSuggestions(word, D)
     return out
 
+
+def spellCheckImproved(T, D):
+    '''
+    Input: A sting of text T to be spell checked (length n words). A python list D of correctly spelled words (length m words).
+
+    Output: For every word w in T that does not occour in D, 5 words in D with minimal edit distance.
+    These will be returned as a dictionary with the w as the key and the value a list of spelling suggestions.
+
+    Words are defined as strings seperated by whitespace (spaces or \n). No other preprocessing is done, so the spell checker
+    is case sensitive. Whitespace will be striped from words in T, but not in D.
+
+    Complexity:
+    '''
+    out = {} #Output dictionary
+    D = set(D)
+    words = T.split() #split by whitespace, strips any remaining white space
+    for word in words:
+        if word not in D: #linear search, O(m)
+            out[word] = findSuggestions(word, D)
+    return out
 
 def findSuggestions(word, D):
     '''

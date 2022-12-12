@@ -17,6 +17,7 @@ Run the tests on the spell checker (see function below with same name)
 '''
 
 import sys
+import re
 
 def editDistance_rec(S,T):
     '''
@@ -131,6 +132,21 @@ def findSuggestions(word, D):
         editDistances = editDistances[:5]
     return out
 
+def documentCheck(textfile, dictfile):
+    with open(textfile, encoding='utf-8') as f:
+        text = f.read()
+        text = text.replace("\n", " ")
+        text = text.replace("—", " ")
+        text = text.replace(".", " ")
+        text = re.sub(r'[^a-zA-Z\’\- ]', '', text)
+        text = text.lower()
+    
+    with open(dictfile) as f:
+        dict_text = f.read()
+        dict = dict_text.split("\n")
+            
+    check_out = spellCheck(text, dict)
+    print(check_out)
 
 
 
@@ -185,6 +201,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    documentCheck("CS375f22_proj4_DynamicProgramming.txt", "CS375_dict.txt")
+    #main()
 
 

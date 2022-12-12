@@ -95,6 +95,7 @@ def spellCheck(T, D):
     Complexity:
     '''
     out = {} #Output dictionary
+    D = set(D)
     words = T.split() #split by whitespace, strips any remaining white space
     for word in words:
         if word not in D: #linear search, O(m)
@@ -132,6 +133,14 @@ def findSuggestions(word, D):
     return out
 
 
+def make_word_dict(filename):
+    #looping through the text file and 
+    d = []
+    with open(filename) as f:
+        for line in f:
+            words = line.split()
+            d.append(words[0])
+    return d
 
 
 def spellCheck_test():
@@ -184,8 +193,9 @@ def main():
     print("Could not identify command line arguments")
 
 
-
 if __name__ == "__main__":
+    # wordlist = make_word_dict('wordlist.txt')
+    # print(spellCheck("this is a tesst of spell chck", wordlist))
     main()
 
 

@@ -25,6 +25,8 @@ def editDistance_rec(S,T):
     Output: Returns the minimum number of operations that need to be conducted on string S to transform it into string T
     
     Note: This algorthm is case sensitive, changing from lower to upper case will count as 1 edit
+
+    Complexity:
     '''
     if S == '':
         return len(T) 
@@ -45,6 +47,8 @@ def editDistance_iter(S,T):
     Output: Returns the minimum number of operations that need to be conducted on string S to transform it into string T
 
     Note: This algorthm is case sensitive, changing from lower to upper case will count as 1 edit
+
+    Complexity:
     '''
     m = len(S)
     n = len(T)
@@ -80,15 +84,20 @@ def editDistance_iter(S,T):
 
 def spellCheck(T, D):
     '''
-    Input: A sting of text T to be spell checked. A dictionary D of correctly spelled words.
+    Input: A sting of text T to be spell checked (length n words). A python list D of correctly spelled words (length m words).
 
     Output: For every word w in T that does not occour in D, 5 words in D with minimal edit distance.
     These will be returned as a dictionary with the w as the key and the value a list of spelling suggestions.
+
+    Words are defined as strings seperated by whitespace (spaces or \n). No other preprocessing is done, so the spell checker
+    is case sensitive. Whitespace will be striped from words in T, but not in D.
+
+    Complexity:
     '''
     out = {} #Output dictionary
-    words = T.split() 
+    words = T.split() #split by whitespace, strips any remaining white space
     for word in words:
-        if word not in D:
+        if word not in D: #linear search, O(m)
             out[word] = findSuggestions(word, D)
     return out
 
@@ -99,18 +108,22 @@ def findSuggestions(word, D):
 
     Output: Returns a list of 5 words from D with the closest edit distance to word. If there is a tie, the word
     that appears in D first is valued closer to the word.
+
+    Complexity:
     '''
     out = [] #Output list
     editDistances = [1e10, 1e10, 1e10, 1e10, 1e10] #keeps track of the 5 smallest edit distances so far
-    for d in D:
-        editDistance = editDistance_iter(d, word)
+    for d in D: #For each word in the dictionary
+        editDistance = editDistance_iter(d, word) #Edit distance of currend dictionary word
         k = 5 #index where new word should be inserted
-        while k > 0: 
+        while k > 0: #Determining where d should be inserted
             if editDistance < editDistances[k-1]:
                 k -= 1 #d belongs higher in the list
             else:
-                break
-        #Inserting d and edit distance into their lists
+                #the editDistance[k-1] could not be in the while loop (causes index error)
+                #this gets around that, but unfortunatly uses a break
+                break 
+        #Inserting d and edit distance into their respective lists
         out.insert(k, d)
         editDistances.insert(k, editDistance)
         #Trimming list to sill be 5 long
@@ -142,7 +155,7 @@ def spellCheck_test():
     with open('en_US-large.txt') as f:
         SCOWL = f.readlines()
         for i in range(len(SCOWL)):
-            SCOWL[i] = SCOWL[i].strip("\n")
+            SCOWL[i] = SCOWL[i].strip()
     print("Input: 'this is a tst of teh spell chekr with SCOWL', SCOWL dictionary")
     print(spellCheck('this is a tst of teh spell chekr with SCOWL', SCOWL))
     print("---------")

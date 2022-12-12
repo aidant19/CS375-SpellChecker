@@ -16,7 +16,10 @@ Usage:
 
 def editDistance_rec(S,T):
     '''
-    TODO add docstring with I/O
+    Input: Two strings, S and T, that represent two words
+    
+    Output: Returns the minimum number of operations that need to be conducted on string S to transform it into string T
+    
     '''
     if S == '':
         return len(T) 
@@ -32,7 +35,9 @@ def editDistance_rec(S,T):
 
 def editDistance_iter(S,T):
     '''
-    TODO add docstring with I/O
+    Input: Two strings, S and T, that represent two words
+    
+    Output: Returns the minimum number of operations that need to be conducted on string S to transform it into string T
     '''
     m = len(S)
     n = len(T)
@@ -83,7 +88,7 @@ def spellCheck(T, D):
 
 def findSuggestions(word, D):
     '''
-    Input: A mispelled word, a dictionary of ccorrectly spelled words D
+    Input: A mispelled word, a dictionary of correctly spelled words D
 
     Output: Returns a list of 5 words from D with the closest edit distance to word. If there is a tie, the word
     that appears in D first is valued closer to the word.

@@ -7,12 +7,16 @@ This program explores different edit distance algorithms
 and a spell spell checker. 
 
 Usage:
-#TODO add usage for each example
+Provide a command line argument for which function you want to run.
+Below are all the possible arguments:
+
+spellChecker_test
+Run the tests on the spell checker (see function below with same name)
 
 
 '''
 
-
+import sys
 
 def editDistance_rec(S,T):
     '''
@@ -20,6 +24,7 @@ def editDistance_rec(S,T):
     
     Output: Returns the minimum number of operations that need to be conducted on string S to transform it into string T
     
+    Note: This algorthm is case sensitive, changing from lower to upper case will count as 1 edit
     '''
     if S == '':
         return len(T) 
@@ -38,6 +43,8 @@ def editDistance_iter(S,T):
     Input: Two strings, S and T, that represent two words
     
     Output: Returns the minimum number of operations that need to be conducted on string S to transform it into string T
+
+    Note: This algorthm is case sensitive, changing from lower to upper case will count as 1 edit
     '''
     m = len(S)
     n = len(T)
@@ -79,7 +86,7 @@ def spellCheck(T, D):
     These will be returned as a dictionary with the w as the key and the value a list of spelling suggestions.
     '''
     out = {} #Output dictionary
-    words = T.lower().split() 
+    words = T.split() 
     for word in words:
         if word not in D:
             out[word] = findSuggestions(word, D)
@@ -114,8 +121,57 @@ def findSuggestions(word, D):
 
 
 
+def spellCheck_test():
+    print("Testing Spell Checker")
+    print("---------")
+    print("Test 1: Small dictionary and storing")
+    print("Input: ths is a tst of spel check, [this, is, a, test, of, spell, check]")
+    print("Output:")
+    print(spellCheck("ths is a tst of spel check", ["this", "is", "a", "test", "of", "spell", "check"]))
+    print("---------")
+    print("Tesst 2: Order of sugestions")
+    print('Input: ("Aalsis", ["Analysis", "Analys", "hello", "HappY", "Algorithm", "Hopper"]')
+    dict = ["Analysis", "Analys", "hello", "HappY", "Algorithm", "Hopper"]
+    test2_out = spellCheck("Aalsis", dict)
+    print(f"Output: {test2_out}")
+    print("Edit Distance for all words in dictionary:")
+    for word in dict:
+        print(f"{word}: {editDistance_iter(word.lower(), 'AaLsIs'.lower())}")
+    print("---------")
+    print("Test 3: Using SCOWL Dictionary")
+    with open('en_US-large.txt') as f:
+        SCOWL = f.readlines()
+        for i in range(len(SCOWL)):
+            SCOWL[i] = SCOWL[i].strip("\n")
+    print("Input: 'this is a tst of teh spell chekr with SCOWL', SCOWL dictionary")
+    print(spellCheck('this is a tst of teh spell chekr with SCOWL', SCOWL))
+    print("---------")
+    print("Test 4: Adding Punctuation and Capitals")
+    print("Our spell checker is case sensitive and does not strip punctuation")
+    print("Input: 'This sentence has no spelling mistakes. It's color is beautiful? 1/2 of all things are red/green some OF the time!', SCOWL dictionary")
+    print("Output:")
+    print(spellCheck("This sentence has no spelling mistakes. It's color is beautiful? 1/2 of all things are red/green some OF the time.", SCOWL))
+
+    
+def main():
+    '''
+    Handles command line arguments to run the proper function.
+    See usage statement above for all the possible arguments
+    '''
+    if len(sys.argv) < 2:
+        print("Please provide comand line arguments")
+        return
+    
+    if sys.argv[1] == "spellCheck_test":
+        spellCheck_test()
+        return
+
+    
+    print("Could not identify comand line arguments")
+
+
 
 if __name__ == "__main__":
-    print(spellCheck("ths is a tst of spel check", ["this", "is", "a", "test", "of", "spell", "check"]))
+    main()
 
 

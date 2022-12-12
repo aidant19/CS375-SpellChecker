@@ -138,7 +138,8 @@ def documentCheck(textfile, dictfile):
         text = text.replace("\n", " ")
         text = text.replace("—", " ")
         text = text.replace(".", " ")
-        text = re.sub(r'[^a-zA-Z\’\- ]', '', text)
+        text = text.replace("’", "'")
+        text = re.sub(r'[^a-zA-Z\'\- ]', '', text)
         text = text.lower()
     
     with open(dictfile) as f:

@@ -18,6 +18,7 @@ Run the tests on the spell checker (see function below with same name)
 
 import sys
 import re
+import time
 
 def editDistance_rec(S,T):
     '''
@@ -139,16 +140,32 @@ def documentCheck(textfile, dictfile):
         text = text.replace("—", " ")
         text = text.replace(".", " ")
         text = text.replace("’", "'")
-        text = re.sub(r'[^a-zA-Z\'\- ]', '', text)
+        text = text.replace("-", " ")
+        text = re.sub(r'[^a-zA-Z\' ]', '', text)
         text = text.lower()
     
     with open(dictfile) as f:
         dict_text = f.read()
+        dict_text = dict_text.lower()
         dict = dict_text.split("\n")
             
     check_out = spellCheck(text, dict)
-    print(check_out)
+    return check_out
 
+def documentCheck_test():
+    print("Testing Document Spell Check")
+    print("---------")
+    print("Test 1: Using SCOWL wordlist on project assignment")
+    start = time.monotonic()
+    #print(documentCheck("CS375f22_proj4_DynamicProgramming_edit.txt", "en_US-large.txt"))
+    end = time.monotonic()
+    print("Time elapsed: {}".format(end - start))
+    print("---------")
+    print("Test 2: Using CS375-specific wordlist on project assignment")
+    start = time.monotonic()
+    print(documentCheck("CS375f22_proj4_DynamicProgramming_edit.txt", "CS375_dict.txt"))
+    end = time.monotonic()
+    print("Time elapsed: {}".format(end - start))
 
 
 def spellCheck_test():
@@ -202,7 +219,7 @@ def main():
 
 
 if __name__ == "__main__":
-    documentCheck("CS375f22_proj4_DynamicProgramming.txt", "CS375_dict.txt")
+    documentCheck_test()
     #main()
 
 

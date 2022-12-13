@@ -1,6 +1,7 @@
 
 a
 aa
+aaron
 ab
 aba
 abb
@@ -108,7 +109,9 @@ although
 altogether
 always
 am
+amanda
 amid
+amin
 among
 amount
 an
@@ -222,6 +225,7 @@ award
 away
 axis
 b
+ba
 back
 background
 backgrounds
@@ -241,6 +245,7 @@ based
 basic
 basically
 battleship
+bb
 be
 became
 because
@@ -284,6 +289,8 @@ bk
 blah
 block
 blocks
+bm
+bn
 board
 body
 book
@@ -360,12 +367,12 @@ carry
 cart
 case
 cases
+cassidy
 cat
 catch
 catching
 categories
 category
-cations
 caught
 center
 central
@@ -392,6 +399,7 @@ characteristics
 characterization
 characterize
 characters
+charles
 chat
 check
 checked
@@ -403,6 +411,7 @@ chemistry
 chess
 chessboard
 child
+chinese
 choice
 choices
 choose
@@ -410,6 +419,8 @@ chooses
 choosing
 chose
 chosen
+ci
+cid
 circuit
 circumstances
 cite
@@ -436,9 +447,11 @@ clearer
 clearest
 clearly
 clever
+clifford
 clique
 cliques
 clock
+clojure
 close
 closed
 closer
@@ -450,6 +463,8 @@ coding
 coin
 coins
 col
+colby
+colby's
 collaboration
 collaborators
 colleagues
@@ -519,6 +534,7 @@ computer
 computers
 computes
 computing
+con
 concept
 concepts
 conceptual
@@ -612,6 +628,7 @@ cool
 coolness
 coordinator
 copying
+cor
 corner
 corners
 correct
@@ -635,7 +652,6 @@ counterexample
 counting
 couple
 couples
-courage
 course
 course's
 courses
@@ -654,6 +670,7 @@ creation
 creative
 creature
 credit
+creditworthy
 criteria
 critical
 cross
@@ -665,7 +682,6 @@ cube
 cubic
 culture
 current
-cursive
 cut
 cutie
 cycle
@@ -679,6 +695,7 @@ data
 database
 date
 dating
+davis
 day
 day's
 days
@@ -691,6 +708,7 @@ death
 debug
 debunked
 dec
+december
 decide
 decides
 decimal
@@ -784,6 +802,7 @@ difficulties
 digraph
 digraphs
 digression
+dijkstra
 dimension
 dimes
 diminish
@@ -839,6 +858,7 @@ does
 doesn't
 doing
 domain
+domains
 dominant
 dominating
 domination
@@ -856,6 +876,7 @@ dropped
 due
 duration
 during
+dx
 dynamic
 e
 ea
@@ -898,11 +919,13 @@ emailed
 emailing
 emails
 emerge
+emily
 emotional
 emphasizes
 empirical
 employ
 employed
+employee
 employing
 empty
 en
@@ -922,6 +945,7 @@ engage
 engaged
 engagement
 engineering
+england
 english
 enough
 ensure
@@ -939,6 +963,8 @@ equation
 equations
 equivalent
 equivalently
+eric
+erlang
 error
 errors
 especially
@@ -953,6 +979,8 @@ etc
 eternity
 ethnicity
 euclidean
+euler
+european
 evaluate
 evaluated
 evaluates
@@ -992,6 +1020,7 @@ expectations
 expected
 expensive
 experience
+experienced
 experiences
 experiment
 experimental
@@ -1027,6 +1056,7 @@ external
 extra
 extremely
 f
+facebook
 facility
 fact
 factor
@@ -1059,6 +1089,7 @@ feeling
 fellowship
 few
 fib
+fibonacci
 field
 fields
 figure
@@ -1122,8 +1153,11 @@ foundational
 foundations
 four
 fourth
+france
 free
 frequently
+friday
+fridays
 friend
 from
 front
@@ -1215,6 +1249,7 @@ growing
 grown
 grows
 growth
+grundy
 guess
 guide
 guidelines
@@ -1225,6 +1260,8 @@ had
 hadn't
 half
 halves
+hamilton
+hamiltonian
 hand
 handed
 handle
@@ -1241,6 +1278,7 @@ hard
 harder
 hardest
 has
+haskell
 have
 haven't
 having
@@ -1297,11 +1335,15 @@ hottest
 hours
 how
 however
+html
 huge
 human
 hundreds
 hypothesis
 i
+i'll
+i'm
+i've
 idea
 ideally
 ideas
@@ -1368,6 +1410,7 @@ independent
 independently
 index
 indexed
+india
 indicate
 indicated
 indicates
@@ -1443,6 +1486,7 @@ interfere
 interleaving
 intermediate
 internal
+internet
 interpreter
 interpreters
 interrogation
@@ -1497,6 +1541,8 @@ j
 jane
 java
 java's
+javascript
+jeanne
 job
 jobs
 joins
@@ -1534,6 +1580,7 @@ late
 lateness
 later
 latex
+latin
 laws
 lead
 leading
@@ -1552,6 +1599,7 @@ left
 legal
 legally
 legend
+lem
 lemmings
 length
 lengths
@@ -1588,6 +1636,7 @@ linearly
 lines
 link
 linked
+lis
 lisp
 list
 listed
@@ -1609,6 +1658,7 @@ logarithmic
 logarithms
 logic
 logical
+london
 long
 longer
 longest
@@ -1628,15 +1678,15 @@ low
 lower
 lowercase
 lowest
+lr
 luck
 lucky
-lustrate
 lyrics
 m
 made
 magic
 main
-mains
+maine
 maintain
 maintains
 maintenance
@@ -1696,7 +1746,6 @@ member
 members
 memory
 mental
-mentations
 mentioned
 mentions
 merge
@@ -1727,7 +1776,9 @@ missed
 missing
 misspelled
 misspellings
+mit
 mixed
+mn
 modal
 model
 modeling
@@ -1739,6 +1790,9 @@ modify
 modifying
 modularity
 module
+monday
+monday's
+mondays
 monochromatic
 more
 moreover
@@ -1747,7 +1801,9 @@ mostly
 move
 moves
 mp
+mst
 much
+multi
 multiple
 multiplication
 multiplying
@@ -1755,7 +1811,7 @@ multiprocessor
 multitask
 musical
 must
-mutations
+mvp
 my
 myself
 myths
@@ -1764,10 +1820,9 @@ name
 named
 names
 naming
-nary
-nation
 natural
 navigation
+nb
 near
 neatly
 necessarily
@@ -1780,6 +1835,7 @@ negation
 negative
 negatively
 neglected
+neil
 neither
 ness
 nested
@@ -1789,6 +1845,7 @@ networks
 never
 new
 next
+ni
 nickels
 night
 nights
@@ -1813,8 +1870,12 @@ nothing
 notice
 noticed
 notify
+nov
 novel
+november
 now
+np
+nt
 null
 number
 numbered
@@ -1822,6 +1883,7 @@ numbers
 numeric
 numerical
 nutshell
+ny
 o
 object
 objective
@@ -1834,12 +1896,15 @@ observations
 observe
 obtained
 obvious
+ocaml
 occur
 occurrence
 occurrences
 occurs
 oct
+october
 odd
+oe
 of
 off
 offer
@@ -1884,6 +1949,7 @@ orderings
 orders
 organization
 orientation
+oriented
 original
 other
 other's
@@ -1924,6 +1990,7 @@ paramount
 paraphrased
 parent
 parentheses
+paris
 parity
 parsing
 part
@@ -1939,6 +2006,7 @@ partner
 partnership
 parts
 party
+pasquale
 pass
 passages
 passenger
@@ -1949,6 +2017,8 @@ paths
 patrol
 pattern
 pay
+pb
+pdf
 peart
 pedagogical
 peek
@@ -1999,7 +2069,6 @@ plug
 plugged
 plugging
 plus
-plying
 pm
 point
 points
@@ -2014,6 +2083,7 @@ polynomial
 polynomials
 poor
 popular
+portland
 posed
 position
 positive
@@ -2026,8 +2096,10 @@ posted
 posting
 postman
 potential
+poughkeepsie
 power
 powerful
+powerpoint
 practical
 practice
 practiced
@@ -2069,6 +2141,7 @@ primary
 prime
 primitive
 primitives
+princeton
 principle
 principles
 print
@@ -2076,6 +2149,7 @@ printing
 private
 prizes
 pro
+prob
 probably
 problem
 problem's
@@ -2119,6 +2193,7 @@ provide
 provided
 providing
 ps
+ps's
 pt
 public
 published
@@ -2133,6 +2208,7 @@ puzzle
 puzzles
 python
 q
+qa
 qr
 quadratic
 quality
@@ -2158,6 +2234,7 @@ rate
 rates
 rather
 rd
+re
 reach
 reaches
 read
@@ -2303,21 +2380,26 @@ reusable
 revealing
 reverse
 review
+reviewing
 revise
 revised
 revisions
 revisited
 reward
 rewritten
+reynolds
 rid
 right
 rights
 rigorous
 rigorously
+robert
 robot
 robots
 role
 roman
+rome
+ronald
 rook
 room
 rooms
@@ -2329,6 +2411,7 @@ roughly
 route
 routing
 row
+rubik's
 rule
 rules
 rumor
@@ -2339,8 +2422,10 @@ runtime
 rural
 rush
 s
+sa
 safe
 safety
+sagan
 sage
 said
 sale
@@ -2348,16 +2433,19 @@ salesman
 salesperson's
 salt
 same
+sana
 sanctions
 sat
 satisfiable
 satisfies
 satisfy
 satisfying
+saturday
 save
 say
 saying
 says
+scala
 scale
 scales
 schedule
@@ -2368,11 +2456,13 @@ science
 scientific
 scope
 score
+scott
 scowl
 screen
-scribe
+se
 search
 searching
+seattle
 sec
 second
 secondary
@@ -2390,6 +2480,7 @@ selection
 selective
 semantics
 semester
+sen
 sending
 sense
 sensible
@@ -2400,6 +2491,7 @@ separate
 separately
 separation
 sept
+september
 sequence
 sequences
 series
@@ -2450,9 +2542,11 @@ since
 single
 sis
 situation
+situational
 situations
 size
 sizes
+sj
 skeptical
 skip
 slicing
@@ -2465,9 +2559,11 @@ slope
 slow
 slower
 slowing
+sm
 small
 smaller
 smallest
+sn
 snowing
 snowy
 so
@@ -2558,11 +2654,13 @@ statistics
 status
 stay
 stays
-stead
 stein
+steiner
 stent
 step
+stephanie
 steps
+steve
 still
 stop
 stops
@@ -2600,6 +2698,7 @@ study
 studying
 stuff
 style
+sub
 subject
 submission
 submissions
@@ -2627,6 +2726,7 @@ successive
 successively
 such
 suddenly
+sudoku
 sue
 suffice
 sufficient
@@ -2641,6 +2741,8 @@ summary
 summation
 summations
 sums
+sunday
+sundays
 super
 supervisor
 supplementary
@@ -2666,6 +2768,7 @@ system
 systems
 t
 ta
+ta's
 table
 tables
 tablets
@@ -2678,10 +2781,10 @@ taking
 talc
 talk
 talking
-tally
 target
 task
 tasks
+taylor
 teaching
 team
 team's
@@ -2701,7 +2804,6 @@ temp
 temporary
 temps
 tempting
-ter
 term
 terminate
 terminates
@@ -2716,6 +2818,7 @@ tests
 text
 textbook
 textual
+th
 than
 thank
 thanks
@@ -2747,6 +2850,7 @@ thinking
 thinks
 third
 this
+thomas
 thorough
 thoroughly
 those
@@ -2761,13 +2865,14 @@ thrilled
 through
 throughout
 thrown
+thursday
+thursdays
 thus
 ties
 tight
 time
 timer
 times
-ting
 tiny
 tip
 tips
@@ -2825,6 +2930,9 @@ truncating
 truth
 try
 trying
+tu
+tuesday
+tuesdays
 turn
 turned
 turns
@@ -2884,6 +2992,7 @@ upper
 uppercase
 upward
 us
+usa
 usability
 usable
 usage
@@ -2896,6 +3005,7 @@ uses
 using
 usual
 usually
+uv
 v
 vacuous
 vacuously
@@ -2938,7 +3048,6 @@ video
 view
 viewed
 viewers
-viewing
 vii
 violate
 violating
@@ -2949,6 +3058,8 @@ visitation
 visited
 visiting
 visits
+vitally
+vj
 vocab
 vocabulary
 voices
@@ -2957,6 +3068,7 @@ vs
 w
 walk
 walked
+wang
 want
 wanted
 wants
@@ -2964,6 +3076,7 @@ warmup
 warning
 warrant
 was
+washington
 wasting
 watch
 way
@@ -2976,6 +3089,7 @@ we've
 weakened
 web
 website
+wednesday
 week
 weekend
 weeks
@@ -3004,8 +3118,9 @@ whom
 whose
 why
 wide
+wikipedia
 will
-winding
+williams
 wisdom
 wisely
 wish
@@ -3034,14 +3149,17 @@ worst
 worthwhile
 worthy
 would
+wp
 wrap
 wrapper
 write
 writeup
 writing
 written
+www
 x
 xi
+xn
 y
 year
 yellow

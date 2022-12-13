@@ -172,7 +172,7 @@ def spellCheck_test():
     print("Output:")
     print(spellCheck("ths is a tst of spel check", ["this", "is", "a", "test", "of", "spell", "check"]))
     print("---------")
-    print("Tesst 2: Order of sugestions")
+    print("Tesst 2: Order of suggestions")
     print('Input: ("Aalsis", ["Analysis", "Analys", "hello", "HappY", "Algorithm", "Hopper"]')
     dict = ["Analysis", "Analys", "hello", "HappY", "Algorithm", "Hopper"]
     test2_out = spellCheck("Aalsis", dict)
@@ -187,15 +187,18 @@ def spellCheck_test():
         for i in range(len(SCOWL)):
             SCOWL[i] = SCOWL[i].strip()
     print("Input: 'this is a tst of teh spell chekr with SCOWL', SCOWL dictionary")
-    print(spellCheck('this is a tst of teh spell chekr with SCOWL', SCOWL))
+    res = spellCheck('this is a tst of teh spell chekr with SCOWL', SCOWL)
+    for word in res:
+        print(f"{word} : {res[word]}")
     print("Note for 'teh', 'the' was not suggested. With short words, the edit distance to other short words is very small, thus the correct word may not make it on the suggestions ")
     print("---------")
     print("Test 4: Adding Punctuation and Capitals")
     print("Our spell checker is case sensitive and does not strip punctuation")
     print("Input: 'This sentence has no spelling mistakes. It's color is beautiful? 1/2 of all things are red/green some OF the time!', SCOWL dictionary")
     print("Output:")
-    print(spellCheck("This sentence has no spelling mistakes. It's color is beautiful? 1/2 of all things are red/green some OF the time.", SCOWL))
-
+    res = spellCheck("This sentence has no spelling mistakes. It's color is beautiful? 1/2 of all things are red/green some OF the time.", SCOWL)
+    for word in res:
+        print(f"{word} : {res[word]}")
     
 def main():
     '''

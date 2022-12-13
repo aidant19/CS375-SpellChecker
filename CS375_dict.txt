@@ -244,6 +244,7 @@ base
 based
 basic
 basically
+basics
 battleship
 bb
 be
@@ -458,6 +459,7 @@ closer
 closest
 clunky
 cm
+co
 code
 coding
 coin
@@ -582,6 +584,7 @@ consists
 constant
 constants
 constitutes
+constrained
 constraint
 constraints
 construct
@@ -597,6 +600,7 @@ consulting
 cont
 contact
 contain
+contained
 containing
 contains
 content
@@ -612,6 +616,7 @@ contribute
 contributes
 contributing
 contributions
+control
 convenience
 convention
 conventional
@@ -648,6 +653,7 @@ counseling
 counselor
 count
 counted
+counter
 counterexample
 counting
 couple
@@ -679,9 +685,11 @@ crossing
 cryptography
 cs
 cube
+cubed
 cubic
 culture
 current
+curve
 cut
 cutie
 cycle
@@ -719,6 +727,7 @@ declaring
 decompose
 decomposition
 decreases
+decreasing
 dedicated
 deduction
 deductions
@@ -772,6 +781,7 @@ designed
 designing
 designs
 desired
+destination
 detail
 detailed
 details
@@ -779,6 +789,7 @@ determine
 determined
 determining
 develop
+developed
 developing
 development
 device
@@ -804,6 +815,7 @@ digraphs
 digression
 dijkstra
 dimension
+dimensional
 dimes
 diminish
 diminishes
@@ -811,6 +823,7 @@ direct
 directed
 direction
 directly
+dis
 disabilities
 disability
 disadvantages
@@ -987,6 +1000,7 @@ evaluates
 evaluating
 evaluation
 evaluations
+evasion
 even
 eventual
 every
@@ -995,6 +1009,7 @@ everyday
 everyone
 everything
 everywhere
+evident
 ex
 exact
 exactly
@@ -1105,12 +1120,14 @@ finally
 find
 finding
 finds
+fine
 finished
 finite
 first
 fit
 fitch
 fits
+fitting
 five
 fix
 fixed
@@ -1120,6 +1137,7 @@ flat
 flexibility
 flexible
 flow
+floyd
 focus
 focused
 focuses
@@ -1289,6 +1307,7 @@ health
 hear
 heard
 heavily
+heavy
 height
 held
 hello
@@ -1331,6 +1350,7 @@ hope
 hopefully
 horizontal
 horizontally
+hospitals
 hottest
 hours
 how
@@ -1629,6 +1649,7 @@ limitation
 limitations
 limited
 limits
+lin
 line
 linear
 linearity
@@ -1685,6 +1706,7 @@ lyrics
 m
 made
 magic
+mail
 main
 maine
 maintain
@@ -1698,8 +1720,10 @@ manage
 managing
 mandatory
 manner
+manuel
 many
 map
+mapped
 maps
 margins
 marketed
@@ -1831,6 +1855,7 @@ need
 needed
 needing
 needs
+neg
 negation
 negative
 negatively
@@ -1854,6 +1879,7 @@ no
 nobody
 node
 nodes
+non
 nondeterminism
 nondeterministic
 none
@@ -1914,6 +1940,7 @@ often
 oh
 okay
 old
+omega
 omitted
 on
 once
@@ -1924,6 +1951,7 @@ ongoing
 online
 only
 onto
+open
 openly
 operands
 operation
@@ -2202,6 +2230,7 @@ puns
 pure
 purpose
 purposes
+pursuit
 put
 putting
 puzzle
@@ -2263,6 +2292,7 @@ recommend
 recommended
 recomputing
 record
+recorded
 recording
 records
 rectangle
@@ -2348,9 +2378,11 @@ require
 required
 requirements
 requires
+requisites
 rescue
 research
 reserves
+residents
 resource
 resources
 respect
@@ -2448,6 +2480,7 @@ says
 scala
 scale
 scales
+scared
 schedule
 scheduled
 scheduling
@@ -2473,11 +2506,13 @@ secures
 security
 see
 seeing
+seeming
 seems
 seen
 selecting
 selection
 selective
+self
 semantics
 semester
 sen
@@ -2496,6 +2531,7 @@ sequence
 sequences
 series
 serve
+served
 services
 sessions
 set
@@ -2564,6 +2600,7 @@ small
 smaller
 smallest
 sn
+sneaky
 snowing
 snowy
 so
@@ -2629,10 +2666,12 @@ split
 splitting
 spoon
 square
+squared
 squares
 st
 stack
 staff
+stage
 stalking
 stand
 standard
@@ -2758,6 +2797,7 @@ surprising
 swap
 swapped
 switch
+switching
 syllabus
 symbol
 symbols
@@ -2901,6 +2941,7 @@ tours
 track
 tractability
 tractable
+trade
 trained
 transform
 transformation
@@ -2990,6 +3031,7 @@ update
 upon
 upper
 uppercase
+ups
 upward
 us
 usa
@@ -3072,6 +3114,7 @@ wang
 want
 wanted
 wants
+warm
 warmup
 warning
 warrant
@@ -3134,6 +3177,7 @@ women
 won't
 wonderful
 word
+worded
 wording
 words
 work
@@ -3178,6 +3222,7 @@ yourself
 yourselves
 z
 zen
+zero
 zipped
 zone
 zoom

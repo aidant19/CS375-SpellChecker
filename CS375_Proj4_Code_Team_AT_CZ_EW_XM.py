@@ -163,6 +163,34 @@ def make_word_dict(filename):
             d.append(words[0])
     return d
 
+def editDistance_test():
+    print("Testing Edit Distance")
+    print("---------")
+    print("Input: ")
+    print("'car' 'cat' - should output 1")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("car","cat")) + " / Recursive: " + str(editDistance_rec("car","cat"))) 
+    print("Input: ")
+    print("'cars' 'cat' - should output 2")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("cars","cat")) + " / Recursive: " + str(editDistance_rec("cars","cat"))) 
+    print("Input: ")
+    print("'analysis' 'algorithms' - should output 8")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("analysis","algorithms")) + " / Recursive: " + str(editDistance_rec("analysis","algorithms"))) 
+    print("Input: ")
+    print("'' 'reach' - should output 5")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("","reach")) + " / Recursive: " + str(editDistance_rec("","reach"))) 
+    print("Input: ")
+    print("'creative' '' - should output 8")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("creative","")) + " / Recursive: " + str(editDistance_rec("creative",""))) 
+    print("Input: ")
+    print("'rock' 'rock' - should output 0")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("rock","rock")) + " / Recursive: " + str(editDistance_rec("rock","rock"))) 
+
 
 def spellCheck_test():
     print("Testing Spell Checker")

@@ -13,10 +13,28 @@ Below are all the possible arguments:
 spellChecker_test
 Run the tests on the spell checker (see function below with same name)
 
+documentCheck_test
+Run tests on documentCheck function
 
+editDistance_test
+Runs test on the edit distance functions
+
+ex. Usage: CS375_Proj4_Code_Team_AT_CZ_EW_XM.py editDistance_test
+
+Layout of File:
+editDistance_rec
+editDistance_iter
+spellCheck
+findSuggestions (helper function for spellCheck)
+documentCheck (Opens a txt document and spell checks it)
+spellCheckImproved 
+make_word_dict (Opens a txt dictionary file and converts to list of words)
+3 test functions for each of the main algorithms
+main function which handles command line arguments and runs desired functions
 '''
 
 import sys
+import re
 import time
 
 def editDistance_rec(S,T):
@@ -38,8 +56,6 @@ def editDistance_rec(S,T):
     return 1 + min( editDistance_rec(S[:-1],T[:-1]), # if the last letter in S and T is not the same
                     editDistance_rec(S[:-1],T),
                     editDistance_rec(S,T[:-1]) ) 
-
-
 
 def editDistance_iter(S,T):
     '''
@@ -77,11 +93,7 @@ def editDistance_iter(S,T):
                                 grid[i][j - 1]
                             ) 
 
-    # for i in range(m + 1): # printing out grid
-    #     print(grid[i])  
-    
     return grid[m][n]
-
 
 def spellCheck(T, D):
     '''
@@ -101,7 +113,6 @@ def spellCheck(T, D):
         if word not in D: #linear search, O(M)
             out[word] = findSuggestions(word, D)
     return out
-
 
 def spellCheckImproved(T, D):
     '''
@@ -155,6 +166,35 @@ def findSuggestions(word, D):
         editDistances = editDistances[:5]
     return out
 
+def documentCheck(textfile, dictfile):
+    '''
+    Input: A text file to be spellchecked, and a text file dictionary of valid words.
+
+    Output: Returns a list of invalid words, and 5 suggestions for replacement.
+    '''
+    with open(textfile, encoding='utf-8') as f:
+        text = f.read()
+        # Replacement order is very important!
+        text = text.replace("\n", " ") # All newlines converted to spaces
+        text = text.replace("—", " ") # All dashes converted to spaces
+        # Attempt to remove as many invalid "words" as possible
+        text = re.sub(r'[a-zA-Z1-9]*[\.<>\[\]@]+[a-zA-Z1-9]+[^\.]', '', text)
+        text = text.replace("’", "'") # Apostrophe encoding correction
+        text = text.replace("-", " ") # All hyphens converted to spaces
+        # Hyphens to spaces treats compound words as two separate words
+        text = text.replace(".", " ") # All periods converted to spaces
+        text = re.sub(r'[^a-zA-Z\' ]', '', text) # Remove all characters that cannot be in a valid word
+        text = re.sub(r' [a-zA-Z] ', ' ', text) # Remove all single character words
+        text = re.sub(r' [a-zA-Z\'][a-zA-Z\'] ', ' ', text) # Remove all two character words
+        text = text.lower() # Spell-checker is case-sensitive, so we use only lowercase checking
+    
+    with open(dictfile) as f:
+        dict_text = f.read()
+        dict_text = dict_text.lower() # Same as above, dictionary is made all lowercase
+        dict = dict_text.split("\n")
+            
+    check_out = spellCheck(text, dict)
+    return check_out
 
 def make_word_list(filename):
     #looping through the text file and 
@@ -174,6 +214,34 @@ def make_word_dict(filename):
             d.add(words[0])
     return d
 
+def editDistance_test():
+    print("Testing Edit Distance")
+    print("---------")
+    print("Input: ")
+    print("'car' 'cat' - should output 1")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("car","cat")) + " / Recursive: " + str(editDistance_rec("car","cat"))) 
+    print("Input: ")
+    print("'cars' 'cat' - should output 2")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("cars","cat")) + " / Recursive: " + str(editDistance_rec("cars","cat"))) 
+    print("Input: ")
+    print("'analysis' 'algorithms' - should output 8")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("analysis","algorithms")) + " / Recursive: " + str(editDistance_rec("analysis","algorithms"))) 
+    print("Input: ")
+    print("'' 'reach' - should output 5")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("","reach")) + " / Recursive: " + str(editDistance_rec("","reach"))) 
+    print("Input: ")
+    print("'creative' '' - should output 8")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("creative","")) + " / Recursive: " + str(editDistance_rec("creative",""))) 
+    print("Input: ")
+    print("'rock' 'rock' - should output 0")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("rock","rock")) + " / Recursive: " + str(editDistance_rec("rock","rock"))) 
+
 def spellCheck_test():
     st = time.time()
     print("Testing Spell Checker")
@@ -183,7 +251,7 @@ def spellCheck_test():
     print("Output:")
     print(spellCheck("ths is a tst of spel check", ["this", "is", "a", "test", "of", "spell", "check"]))
     print("---------")
-    print("Tesst 2: Order of sugestions")
+    print("Tesst 2: Order of suggestions")
     print('Input: ("Aalsis", ["Analysis", "Analys", "hello", "HappY", "Algorithm", "Hopper"]')
     dict = ["Analysis", "Analys", "hello", "HappY", "Algorithm", "Hopper"]
     test2_out = spellCheck("Aalsis", dict)
@@ -200,8 +268,11 @@ def spellCheck_test():
     #     for i in range(len(SCOWL)):
     #         SCOWL[i] = SCOWL[i].strip()
     SCOWL = make_word_list('en_US-large.txt')
+    SCOWL = make_word_dict('en_US-large.txt')
     print("Input: 'this is a tst of teh spell chekr with SCOWL', SCOWL dictionary")
-    print(spellCheck('this is a tst of teh spell chekr with SCOWL', SCOWL))
+    res = spellCheck('this is a tst of teh spell chekr with SCOWL', SCOWL)
+    for word in res:
+        print(f"{word} : {res[word]}")
     print("Note for 'teh', 'the' was not suggested. With short words, the edit distance to other short words is very small, thus the correct word may not make it on the suggestions ")
     print("---------")
     ed = time.time()
@@ -258,7 +329,37 @@ def spellCheckImproved_test():
     print(spellCheckImproved("This sentence has no spelling mistakes. It's color is beautiful? 1/2 of all things are red/green some OF the time.", SCOWL))
     ed = time.time()
     print(ed - st)
+    res = spellCheck("This sentence has no spelling mistakes. It's color is beautiful? 1/2 of all things are red/green some OF the time.", SCOWL)
+    for word in res:
+        print(f"{word} : {res[word]}")
     
+def documentCheck_test():
+    print("Testing Document Spell Check")
+    print("---------")
+    print("Test 1: Using SCOWL wordlist on project assignment")
+    start = time.monotonic()
+    print(documentCheck("CS375f22_proj4_DynamicProgramming.txt", "en_US-large.txt"))
+    end = time.monotonic()
+    print("Time elapsed: {}".format(end - start))
+    print("---------")
+    print("Test 2: Using CS375-specific wordlist on project assignment")
+    start = time.monotonic()
+    print(documentCheck("CS375f22_proj4_DynamicProgramming.txt", "CS375_dict.txt"))
+    end = time.monotonic()
+    print("Time elapsed: {}".format(end - start))
+    print("---------")
+    print("Test 3: Using SCOWL wordlist on PS5")
+    start = time.monotonic()
+    print(documentCheck("cs375f22_PS5.txt", "en_US-large.txt"))
+    end = time.monotonic()
+    print("Time elapsed: {}".format(end - start))
+    print("---------")
+    print("Test 4: Using CS375-specific wordlist on PS5")
+    start = time.monotonic()
+    print(documentCheck("cs375f22_PS5.txt", "CS375_dict.txt"))
+    end = time.monotonic()
+    print("Time elapsed: {}".format(end - start))
+
 def main():
     '''
     Handles command line arguments to run the proper function.
@@ -271,16 +372,22 @@ def main():
     if sys.argv[1] == "spellCheck_test":
         spellCheck_test()
         return
-    elif sys.argv[1] == "spellCheckImproved_test":
+    
+    if sys.argv[1] == "spellCheckImproved_test":
         spellCheckImproved_test()
+        return
+
+    if sys.argv[1] == "documentCheck_test":
+        documentCheck_test()
+        return
+    
+    if sys.argv[1] == "editDistance_test":
+        editDistance_test()
         return
     
     print("Could not identify command line arguments")
 
-
 if __name__ == "__main__":
-    # wordlist = make_word_dict('wordlist.txt')
-    # print(spellCheck("this is a tesst of spell chck", wordlist))
     main()
 
 

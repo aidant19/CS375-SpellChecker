@@ -110,7 +110,28 @@ def spellCheck(T, D):
     out = {} #Output dictionary
     words = T.split() #split by whitespace, strips any remaining white space
     for word in words:
-        if word not in D: #linear search, O(m)
+        if word not in D: #linear search, O(M)
+            out[word] = findSuggestions(word, D)
+    return out
+
+def spellCheckImproved(T, D):
+    '''
+    Input: A sting of text T to be spell checked (length n words). A python list D of correctly spelled words (length m words).
+
+    Output: For every word w in T that does not occour in D, 5 words in D with minimal edit distance.
+    These will be returned as a dictionary with the w as the key and the value a list of spelling suggestions.
+
+    Words are defined as strings seperated by whitespace (spaces or \n). No other preprocessing is done, so the spell checker
+    is case sensitive. Whitespace will be striped from words in T, but not in D.
+
+    Complexity:
+    '''
+    out = {} #Output dictionary
+    
+    words = set(T.split()) 
+    D = set(D)
+    for word in words:
+        if word not in D: #constant time search, O(1)
             out[word] = findSuggestions(word, D)
     return out
 
@@ -126,9 +147,11 @@ def findSuggestions(word, D):
     out = [] #Output list
     editDistances = [1e10, 1e10, 1e10, 1e10, 1e10] #keeps track of the 5 smallest edit distances so far
     for d in D: #For each word in the dictionary
-        editDistance = editDistance_iter(d, word) #Edit distance of currend dictionary word
+        editDistance =  editDistance_iter(d, word) #Edit distance of currend dictionary word
         k = 5 #index where new word should be inserted
         while k > 0: #Determining where d should be inserted
+            # print(editDistance[k])
+            # print(editDistances[k-1])
             if editDistance < editDistances[k-1]:
                 k -= 1 #d belongs higher in the list
             else:
@@ -173,33 +196,22 @@ def documentCheck(textfile, dictfile):
     check_out = spellCheck(text, dict)
     return check_out
 
-def spellCheckImproved(T, D):
-    '''
-    Input: A sting of text T to be spell checked (length n words). A python list D of correctly spelled words (length m words).
-
-    Output: For every word w in T that does not occour in D, 5 words in D with minimal edit distance.
-    These will be returned as a dictionary with the w as the key and the value a list of spelling suggestions.
-
-    Words are defined as strings seperated by whitespace (spaces or \n). No other preprocessing is done, so the spell checker
-    is case sensitive. Whitespace will be striped from words in T, but not in D.
-
-    Complexity:
-    '''
-    out = {} #Output dictionary
-    D = set(D)
-    words = T.split() #split by whitespace, strips any remaining white space
-    for word in words:
-        if word not in D: #linear search, O(m)
-            out[word] = findSuggestions(word, D)
-    return out
-
-def make_word_dict(filename):
+def make_word_list(filename):
     #looping through the text file and 
     d = []
     with open(filename) as f:
         for line in f:
             words = line.split()
             d.append(words[0])
+    return d
+
+def make_word_dict(filename):
+    #looping through the text file and 
+    d = set()
+    with open(filename) as f:
+        for line in f:
+            words = line.split()
+            d.add(words[0])
     return d
 
 def editDistance_test():
@@ -231,6 +243,7 @@ def editDistance_test():
     print("Iterative: " + str(editDistance_iter("rock","rock")) + " / Recursive: " + str(editDistance_rec("rock","rock"))) 
 
 def spellCheck_test():
+    st = time.time()
     print("Testing Spell Checker")
     print("---------")
     print("Test 1: Small dictionary and storing")
@@ -247,7 +260,14 @@ def spellCheck_test():
     for word in dict:
         print(f"{word}: {editDistance_iter(word.lower(), 'AaLsIs'.lower())}")
     print("---------")
+
+    st = time.time()
     print("Test 3: Using SCOWL Dictionary")
+    # with open('en_US-large.txt') as f:
+    #     SCOWL = f.readlines()
+    #     for i in range(len(SCOWL)):
+    #         SCOWL[i] = SCOWL[i].strip()
+    SCOWL = make_word_list('en_US-large.txt')
     SCOWL = make_word_dict('en_US-large.txt')
     print("Input: 'this is a tst of teh spell chekr with SCOWL', SCOWL dictionary")
     res = spellCheck('this is a tst of teh spell chekr with SCOWL', SCOWL)
@@ -255,10 +275,60 @@ def spellCheck_test():
         print(f"{word} : {res[word]}")
     print("Note for 'teh', 'the' was not suggested. With short words, the edit distance to other short words is very small, thus the correct word may not make it on the suggestions ")
     print("---------")
+    ed = time.time()
+    print(ed - st)
+
+    st = time.time()
     print("Test 4: Adding Punctuation and Capitals")
     print("Our spell checker is case sensitive and does not strip punctuation")
     print("Input: 'This sentence has no spelling mistakes. It's color is beautiful? 1/2 of all things are red/green some OF the time!', SCOWL dictionary")
     print("Output:")
+    print(spellCheck("This sentence has no spelling mistakes. It's color is beautiful? 1/2 of all things are red/green some OF the time.", SCOWL))
+    ed = time.time()
+    print(ed - st)
+
+def spellCheckImproved_test():
+    st = time.time()
+    print("Testing Improved Spell Checker")
+    print("---------")
+    print("Test 1: Small dictionary and storing")
+    print("Input: ths is a tst of spel check, [this, is, a, test, of, spell, check]")
+    print("Output:")
+    print(spellCheckImproved("ths is a tst of spel check", ["this", "is", "a", "test", "of", "spell", "check"]))
+    print("---------")
+
+    print("Tesst 2: Order of sugestions")
+    print('Input: ("Aalsis", ["Analysis", "Analys", "hello", "HappY", "Algorithm", "Hopper"]')
+    dict = ["Analysis", "Analys", "hello", "HappY", "Algorithm", "Hopper"]
+    test2_out = spellCheckImproved("Aalsis", dict)
+    print(f"Output: {test2_out}")
+    print("Edit Distance for all words in dictionary:")
+    for word in dict:
+        print(f"{word}: {editDistance_iter(word.lower(), 'AaLsIs'.lower())}")
+    print("---------")
+
+    st = time.time()
+    print("Test 3: Using SCOWL Dictionary")
+    # with open('en_US-large.txt') as f:
+    #     SCOWL = f.readlines()
+    #     for i in range(len(SCOWL)):
+    #         SCOWL[i] = SCOWL[i].strip()
+    SCOWL = make_word_list('en_US-large.txt')
+    print("Input: 'this is a tst of teh spell chekr with SCOWL', SCOWL dictionary")
+    print(spellCheckImproved('this is a tst of teh spell chekr with SCOWL', SCOWL))
+    print("Note for 'teh', 'the' was not suggested. With short words, the edit distance to other short words is very small, thus the correct word may not make it on the suggestions ")
+    print("---------")
+    ed = time.time()
+    print(ed - st)
+
+    st = time.time()
+    print("Test 4: Adding Punctuation and Capitals")
+    print("Our spell checker is case sensitive and does not strip punctuation")
+    print("Input: 'This sentence has no spelling mistakes. It's color is beautiful? 1/2 of all things are red/green some OF the time!', SCOWL dictionary")
+    print("Output:")
+    print(spellCheckImproved("This sentence has no spelling mistakes. It's color is beautiful? 1/2 of all things are red/green some OF the time.", SCOWL))
+    ed = time.time()
+    print(ed - st)
     res = spellCheck("This sentence has no spelling mistakes. It's color is beautiful? 1/2 of all things are red/green some OF the time.", SCOWL)
     for word in res:
         print(f"{word} : {res[word]}")
@@ -303,6 +373,10 @@ def main():
         spellCheck_test()
         return
     
+    if sys.argv[1] == "spellCheckImproved_test":
+        spellCheckImproved_test()
+        return
+
     if sys.argv[1] == "documentCheck_test":
         documentCheck_test()
         return

@@ -240,7 +240,7 @@ def editDistance_test():
     print("Input: ")
     print("'rock' 'rock' - should output 0")
     print("Output: ")
-    print("Iterative: " + str(editDistance_iter("rock","rock")) + " / Recursive: " + str(editDistance_rec("rock","rock"))) 
+    print("Iterative: " + str(editDistance_iter("rock","rock")) + " / Recursive: " + str(editDistance_rec("rock","rock")))
 
 def spellCheck_test():
     st = time.time()

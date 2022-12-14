@@ -17,6 +17,8 @@ Run the tests on the spell checker (see function below with same name)
 '''
 
 import sys
+import re
+import time
 
 def editDistance_rec(S,T):
     '''
@@ -130,6 +132,62 @@ def findSuggestions(word, D):
         editDistances = editDistances[:5]
     return out
 
+def documentCheck(textfile, dictfile):
+    '''
+    Input: A text file to be spellchecked, and a text file dictionary of valid words.
+
+    Output: Returns a list of invalid words, and 5 suggestions for replacement.
+    '''
+    with open(textfile, encoding='utf-8') as f:
+        text = f.read()
+        # Replacement order is very important!
+        text = text.replace("\n", " ") # All newlines converted to spaces
+        text = text.replace("—", " ") # All dashes converted to spaces
+        # Attempt to remove as many invalid "words" as possible
+        text = re.sub(r'[a-zA-Z1-9]*[\.<>\[\]@]+[a-zA-Z1-9]+[^\.]', '', text)
+        text = text.replace("’", "'") # Apostrophe encoding correction
+        text = text.replace("-", " ") # All hyphens converted to spaces
+        # Hyphens to spaces treats compound words as two separate words
+        text = text.replace(".", " ") # All periods converted to spaces
+        text = re.sub(r'[^a-zA-Z\' ]', '', text) # Remove all characters that cannot be in a valid word
+        text = re.sub(r' [a-zA-Z] ', ' ', text) # Remove all single character words
+        text = re.sub(r' [a-zA-Z\'][a-zA-Z\'] ', ' ', text) # Remove all two character words
+        text = text.lower() # Spell-checker is case-sensitive, so we use only lowercase checking
+    
+    with open(dictfile) as f:
+        dict_text = f.read()
+        dict_text = dict_text.lower() # Same as above, dictionary is made all lowercase
+        dict = dict_text.split("\n")
+            
+    check_out = spellCheck(text, dict)
+    return check_out
+
+def documentCheck_test():
+    print("Testing Document Spell Check")
+    print("---------")
+    print("Test 1: Using SCOWL wordlist on project assignment")
+    start = time.monotonic()
+    print(documentCheck("CS375f22_proj4_DynamicProgramming.txt", "en_US-large.txt"))
+    end = time.monotonic()
+    print("Time elapsed: {}".format(end - start))
+    print("---------")
+    print("Test 2: Using CS375-specific wordlist on project assignment")
+    start = time.monotonic()
+    print(documentCheck("CS375f22_proj4_DynamicProgramming.txt", "CS375_dict.txt"))
+    end = time.monotonic()
+    print("Time elapsed: {}".format(end - start))
+    print("---------")
+    print("Test 3: Using SCOWL wordlist on PS5")
+    start = time.monotonic()
+    print(documentCheck("cs375f22_PS5.txt", "en_US-large.txt"))
+    end = time.monotonic()
+    print("Time elapsed: {}".format(end - start))
+    print("---------")
+    print("Test 4: Using CS375-specific wordlist on PS5")
+    start = time.monotonic()
+    print(documentCheck("cs375f22_PS5.txt", "CS375_dict.txt"))
+    end = time.monotonic()
+    print("Time elapsed: {}".format(end - start))
 
 def spellCheckImproved(T, D):
     '''
@@ -150,9 +208,6 @@ def spellCheckImproved(T, D):
         if word not in D: #linear search, O(m)
             out[word] = findSuggestions(word, D)
     return out
-
-
-
 
 def make_word_dict(filename):
     #looping through the text file and 
@@ -240,7 +295,10 @@ def main():
     if sys.argv[1] == "spellCheck_test":
         spellCheck_test()
         return
-
+    
+    if sys.argv[1] == "documentCheck_test":
+        documentCheck_test()
+        return
     
     print("Could not identify command line arguments")
 

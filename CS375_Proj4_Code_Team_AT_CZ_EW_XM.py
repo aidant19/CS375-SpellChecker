@@ -18,6 +18,17 @@ Run tests on documentCheck function
 
 editDistance_test
 Runs test on the edit distance functions
+
+Layout of File:
+editDistance_rec
+editDistance_iter
+spellCheck
+findSuggestions (helper function for spellCheck)
+documentCheck (Opens a txt document and spell checks it)
+spellCheckImproved 
+make_word_dict (Opens a txt dictionary file and converts to list of words)
+3 test functions for each of the main algorithms
+main function which handles command line arguments and runs desired functions
 '''
 
 import sys
@@ -43,8 +54,6 @@ def editDistance_rec(S,T):
     return 1 + min( editDistance_rec(S[:-1],T[:-1]), # if the last letter in S and T is not the same
                     editDistance_rec(S[:-1],T),
                     editDistance_rec(S,T[:-1]) ) 
-
-
 
 def editDistance_iter(S,T):
     '''
@@ -83,7 +92,6 @@ def editDistance_iter(S,T):
                             ) 
 
     return grid[m][n]
-
 
 def spellCheck(T, D):
     '''
@@ -163,7 +171,6 @@ def documentCheck(textfile, dictfile):
     check_out = spellCheck(text, dict)
     return check_out
 
-
 def spellCheckImproved(T, D):
     '''
     Input: A sting of text T to be spell checked (length n words). A python list D of correctly spelled words (length m words).
@@ -220,7 +227,6 @@ def editDistance_test():
     print("'rock' 'rock' - should output 0")
     print("Output: ")
     print("Iterative: " + str(editDistance_iter("rock","rock")) + " / Recursive: " + str(editDistance_rec("rock","rock"))) 
-
 
 def spellCheck_test():
     print("Testing Spell Checker")
@@ -304,7 +310,6 @@ def main():
         return
     
     print("Could not identify command line arguments")
-
 
 if __name__ == "__main__":
     main()

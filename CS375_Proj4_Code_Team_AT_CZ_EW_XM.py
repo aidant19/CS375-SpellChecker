@@ -19,6 +19,8 @@ Run tests on documentCheck function
 editDistance_test
 Runs test on the edit distance functions
 
+ex. Usage: CS375_Proj4_Code_Team_AT_CZ_EW_XM.py editDistance_test
+
 Layout of File:
 editDistance_rec
 editDistance_iter

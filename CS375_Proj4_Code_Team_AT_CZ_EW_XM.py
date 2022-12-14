@@ -30,13 +30,13 @@ def editDistance_rec(S,T):
 
     Complexity:
     '''
-    if S == '':
+    if S == '': # if S is an empty string
         return len(T) 
-    if T == '':
+    if T == '': # if T is an empty string
         return len(S)
-    if S[-1] == T[-1]:
+    if S[-1] == T[-1]: # if the last letter in S and T is the same
         return editDistance_rec(S[:-1],T[:-1]) 
-    return 1 + min( editDistance_rec(S[:-1],T[:-1]), 
+    return 1 + min( editDistance_rec(S[:-1],T[:-1]), # if the last letter in S and T is not the same
                     editDistance_rec(S[:-1],T),
                     editDistance_rec(S,T[:-1]) ) 
 
@@ -102,7 +102,6 @@ def spellCheck(T, D):
         if word not in D: #linear search, O(m)
             out[word] = findSuggestions(word, D)
     return out
-
 
 def findSuggestions(word, D):
     '''
@@ -190,6 +189,63 @@ def documentCheck_test():
     end = time.monotonic()
     print("Time elapsed: {}".format(end - start))
 
+def spellCheckImproved(T, D):
+    '''
+    Input: A sting of text T to be spell checked (length n words). A python list D of correctly spelled words (length m words).
+
+    Output: For every word w in T that does not occour in D, 5 words in D with minimal edit distance.
+    These will be returned as a dictionary with the w as the key and the value a list of spelling suggestions.
+
+    Words are defined as strings seperated by whitespace (spaces or \n). No other preprocessing is done, so the spell checker
+    is case sensitive. Whitespace will be striped from words in T, but not in D.
+
+    Complexity:
+    '''
+    out = {} #Output dictionary
+    D = set(D)
+    words = T.split() #split by whitespace, strips any remaining white space
+    for word in words:
+        if word not in D: #linear search, O(m)
+            out[word] = findSuggestions(word, D)
+    return out
+
+def make_word_dict(filename):
+    #looping through the text file and 
+    d = []
+    with open(filename) as f:
+        for line in f:
+            words = line.split()
+            d.append(words[0])
+    return d
+
+def editDistance_test():
+    print("Testing Edit Distance")
+    print("---------")
+    print("Input: ")
+    print("'car' 'cat' - should output 1")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("car","cat")) + " / Recursive: " + str(editDistance_rec("car","cat"))) 
+    print("Input: ")
+    print("'cars' 'cat' - should output 2")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("cars","cat")) + " / Recursive: " + str(editDistance_rec("cars","cat"))) 
+    print("Input: ")
+    print("'analysis' 'algorithms' - should output 8")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("analysis","algorithms")) + " / Recursive: " + str(editDistance_rec("analysis","algorithms"))) 
+    print("Input: ")
+    print("'' 'reach' - should output 5")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("","reach")) + " / Recursive: " + str(editDistance_rec("","reach"))) 
+    print("Input: ")
+    print("'creative' '' - should output 8")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("creative","")) + " / Recursive: " + str(editDistance_rec("creative",""))) 
+    print("Input: ")
+    print("'rock' 'rock' - should output 0")
+    print("Output: ")
+    print("Iterative: " + str(editDistance_iter("rock","rock")) + " / Recursive: " + str(editDistance_rec("rock","rock"))) 
+
 
 def spellCheck_test():
     print("Testing Spell Checker")
@@ -199,7 +255,7 @@ def spellCheck_test():
     print("Output:")
     print(spellCheck("ths is a tst of spel check", ["this", "is", "a", "test", "of", "spell", "check"]))
     print("---------")
-    print("Tesst 2: Order of sugestions")
+    print("Tesst 2: Order of suggestions")
     print('Input: ("Aalsis", ["Analysis", "Analys", "hello", "HappY", "Algorithm", "Hopper"]')
     dict = ["Analysis", "Analys", "hello", "HappY", "Algorithm", "Hopper"]
     test2_out = spellCheck("Aalsis", dict)
@@ -214,14 +270,18 @@ def spellCheck_test():
         for i in range(len(SCOWL)):
             SCOWL[i] = SCOWL[i].strip()
     print("Input: 'this is a tst of teh spell chekr with SCOWL', SCOWL dictionary")
-    print(spellCheck('this is a tst of teh spell chekr with SCOWL', SCOWL))
+    res = spellCheck('this is a tst of teh spell chekr with SCOWL', SCOWL)
+    for word in res:
+        print(f"{word} : {res[word]}")
+    print("Note for 'teh', 'the' was not suggested. With short words, the edit distance to other short words is very small, thus the correct word may not make it on the suggestions ")
     print("---------")
     print("Test 4: Adding Punctuation and Capitals")
     print("Our spell checker is case sensitive and does not strip punctuation")
     print("Input: 'This sentence has no spelling mistakes. It's color is beautiful? 1/2 of all things are red/green some OF the time!', SCOWL dictionary")
     print("Output:")
-    print(spellCheck("This sentence has no spelling mistakes. It's color is beautiful? 1/2 of all things are red/green some OF the time.", SCOWL))
-
+    res = spellCheck("This sentence has no spelling mistakes. It's color is beautiful? 1/2 of all things are red/green some OF the time.", SCOWL)
+    for word in res:
+        print(f"{word} : {res[word]}")
     
 def main():
     '''
@@ -229,7 +289,7 @@ def main():
     See usage statement above for all the possible arguments
     '''
     if len(sys.argv) < 2:
-        print("Please provide comand line arguments")
+        print("Please provide command line arguments")
         return
     
     if sys.argv[1] == "spellCheck_test":
@@ -240,11 +300,12 @@ def main():
         documentCheck_test()
         return
     
-    print("Could not identify comand line arguments")
-
+    print("Could not identify command line arguments")
 
 
 if __name__ == "__main__":
+    # wordlist = make_word_dict('wordlist.txt')
+    # print(spellCheck("this is a tesst of spell chck", wordlist))
     main()
 
 

@@ -13,7 +13,11 @@ Below are all the possible arguments:
 spellChecker_test
 Run the tests on the spell checker (see function below with same name)
 
+documentCheck_test
+Run tests on documentCheck function
 
+editDistance_test
+Runs test on the edit distance functions
 '''
 
 import sys
@@ -78,9 +82,6 @@ def editDistance_iter(S,T):
                                 grid[i][j - 1]
                             ) 
 
-    # for i in range(m + 1): # printing out grid
-    #     print(grid[i])  
-    
     return grid[m][n]
 
 
@@ -162,32 +163,6 @@ def documentCheck(textfile, dictfile):
     check_out = spellCheck(text, dict)
     return check_out
 
-def documentCheck_test():
-    print("Testing Document Spell Check")
-    print("---------")
-    print("Test 1: Using SCOWL wordlist on project assignment")
-    start = time.monotonic()
-    print(documentCheck("CS375f22_proj4_DynamicProgramming.txt", "en_US-large.txt"))
-    end = time.monotonic()
-    print("Time elapsed: {}".format(end - start))
-    print("---------")
-    print("Test 2: Using CS375-specific wordlist on project assignment")
-    start = time.monotonic()
-    print(documentCheck("CS375f22_proj4_DynamicProgramming.txt", "CS375_dict.txt"))
-    end = time.monotonic()
-    print("Time elapsed: {}".format(end - start))
-    print("---------")
-    print("Test 3: Using SCOWL wordlist on PS5")
-    start = time.monotonic()
-    print(documentCheck("cs375f22_PS5.txt", "en_US-large.txt"))
-    end = time.monotonic()
-    print("Time elapsed: {}".format(end - start))
-    print("---------")
-    print("Test 4: Using CS375-specific wordlist on PS5")
-    start = time.monotonic()
-    print(documentCheck("cs375f22_PS5.txt", "CS375_dict.txt"))
-    end = time.monotonic()
-    print("Time elapsed: {}".format(end - start))
 
 def spellCheckImproved(T, D):
     '''
@@ -265,10 +240,7 @@ def spellCheck_test():
         print(f"{word}: {editDistance_iter(word.lower(), 'AaLsIs'.lower())}")
     print("---------")
     print("Test 3: Using SCOWL Dictionary")
-    with open('en_US-large.txt') as f:
-        SCOWL = f.readlines()
-        for i in range(len(SCOWL)):
-            SCOWL[i] = SCOWL[i].strip()
+    SCOWL = make_word_dict('en_US-large.txt')
     print("Input: 'this is a tst of teh spell chekr with SCOWL', SCOWL dictionary")
     res = spellCheck('this is a tst of teh spell chekr with SCOWL', SCOWL)
     for word in res:
@@ -283,6 +255,33 @@ def spellCheck_test():
     for word in res:
         print(f"{word} : {res[word]}")
     
+def documentCheck_test():
+    print("Testing Document Spell Check")
+    print("---------")
+    print("Test 1: Using SCOWL wordlist on project assignment")
+    start = time.monotonic()
+    print(documentCheck("CS375f22_proj4_DynamicProgramming.txt", "en_US-large.txt"))
+    end = time.monotonic()
+    print("Time elapsed: {}".format(end - start))
+    print("---------")
+    print("Test 2: Using CS375-specific wordlist on project assignment")
+    start = time.monotonic()
+    print(documentCheck("CS375f22_proj4_DynamicProgramming.txt", "CS375_dict.txt"))
+    end = time.monotonic()
+    print("Time elapsed: {}".format(end - start))
+    print("---------")
+    print("Test 3: Using SCOWL wordlist on PS5")
+    start = time.monotonic()
+    print(documentCheck("cs375f22_PS5.txt", "en_US-large.txt"))
+    end = time.monotonic()
+    print("Time elapsed: {}".format(end - start))
+    print("---------")
+    print("Test 4: Using CS375-specific wordlist on PS5")
+    start = time.monotonic()
+    print(documentCheck("cs375f22_PS5.txt", "CS375_dict.txt"))
+    end = time.monotonic()
+    print("Time elapsed: {}".format(end - start))
+
 def main():
     '''
     Handles command line arguments to run the proper function.
@@ -300,12 +299,14 @@ def main():
         documentCheck_test()
         return
     
+    if sys.argv[1] == "editDistance_test":
+        editDistance_test()
+        return
+    
     print("Could not identify command line arguments")
 
 
 if __name__ == "__main__":
-    # wordlist = make_word_dict('wordlist.txt')
-    # print(spellCheck("this is a tesst of spell chck", wordlist))
     main()
 
 
